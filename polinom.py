@@ -43,7 +43,7 @@ from sympy.ntheory import factorint
    
 #print(sympy.polys.galoistools.gf_gcdex(ZZ.map([1,0,-4,0,0,-1,0,4]),ZZ.map([1,-4,-1,0,4]),13,ZZ))
 
-def privodim(f, p):
+def is_reducible(f, p):
     u = x
     n = degree(f)
     for i in range(0, n//2):
@@ -53,7 +53,7 @@ def privodim(f, p):
             return "приводим"
     return "неприводим"
 
-def primitiv(g,p):
+def is_primitive(g,p):
     p_n = p ** degree(g)
     factor = factorint(p_n-1)
     for p_i in factor:
@@ -62,13 +62,15 @@ def primitiv(g,p):
             return "непримитивный"
     return "примитивный"
 
-def main():
-    # while(1):
-    f=sympy.Poly(input("Введите полином= "))
-    p=int(input("Введите p (Z_p)= "))
-    print(privodim(f,p))
-    print(primitiv(f,p))
+# def main():
+# while(1):
+f=sympy.Poly(input("Введите полином= "))
+p=int(input("Введите p (Z_p)= "))
+reducible = is_reducible(f,p)
+print (reducible)
+if reducible == "неприводим":
+    print(is_primitive(f,p))
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
