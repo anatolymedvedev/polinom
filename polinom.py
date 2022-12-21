@@ -57,14 +57,16 @@ def is_primitive(g,p):
     p_n = p ** degree(g)
     factor = factorint(p_n-1)
     for p_i in factor:
-        r = (x ** ((p_n - 1) // p_i)) % g
+        r = (x ** ((p_n - 1) / p_i)) % g
         if r == 1:
             return "непримитивный"
     return "примитивный"
 
 # def main():
 # while(1):
-f=sympy.Poly(input("Введите полином= "))
+# f=sympy.Poly(input("Введите полином= "))
+f = input("Введите коэф. полинома= ")
+f = sympy.Poly.from_list(list(map(int, f.split())), x)
 p=int(input("Введите p (Z_p)= "))
 reducible = is_reducible(f,p)
 print (reducible)
